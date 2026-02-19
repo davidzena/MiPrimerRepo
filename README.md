@@ -1,12 +1,17 @@
 # MiPrimerRepo
 
-Aplicación web para una **lomitería y hamburguesería** donde el cliente puede armar y confirmar su pedido.
+Aplicación web para una **lomitería y hamburguesería** donde el cliente puede armar y confirmar su pedido online.
 
 ## Funcionalidades
-- Menú separado por categorías (lomitos y hamburguesas).
-- Carga de cantidades por producto.
-- Datos del cliente (nombre, dirección y notas).
-- Resumen final con total del pedido.
+- Menú con productos y precios en guaraníes.
+- Formulario web para cantidades, nombre, dirección y notas.
+- Resumen final con detalle y total del pedido.
+- Estructura separada en `templates/` y `static/` para una web más mantenible.
+
+## Estructura
+- `app.py`: lógica de la aplicación Flask.
+- `templates/index.html`: plantilla principal de la página.
+- `static/styles.css`: estilos de la interfaz.
 
 ## Ejecutar el proyecto
 1. Instalar dependencias:
