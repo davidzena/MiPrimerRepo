@@ -47,6 +47,18 @@
         <label>Notas
           <textarea name="notas" rows="3">{{ values.get('notas', '') }}</textarea>
         </label>
+
+        <fieldset class="delivery-box">
+          <legend>¿El pedido es con delivery?</legend>
+          <label class="radio-option">
+            <input type="radio" name="delivery" value="si" {% if values.get('delivery') == 'si' %}checked{% endif %} />
+            Sí (+ Gs {{ "{:,.0f}".format(delivery_cost).replace(',', '.') }})
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="delivery" value="no" {% if values.get('delivery', 'no') == 'no' %}checked{% endif %} />
+            No
+          </label>
+        </fieldset>
       </section>
 
       <button type="submit">Confirmar pedido</button>
@@ -61,6 +73,7 @@
         <h3>Pedido confirmado para {{ resumen.cliente }}</h3>
         <p><strong>Dirección:</strong> {{ resumen.direccion }}</p>
         <p><strong>Notas:</strong> {{ resumen.notas or 'Sin notas' }}</p>
+        <p><strong>Delivery:</strong> {{ 'Sí' if resumen.delivery else 'No' }}</p>
         <ul>
           {% for linea in resumen.detalle %}
             <li>{{ linea }}</li>

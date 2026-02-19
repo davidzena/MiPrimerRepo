@@ -2,6 +2,8 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+DELIVERY_COST = 10000
+
 MENU = {
     "lomitos": [
         {
@@ -16,9 +18,10 @@ MENU = {
         },
     ],
     "hamburguesas": [
-        {"id": "hamburguesa_simple", "nombre": "Hamburguesa Simple", "precio": 3900},
+        {"id": "hamburguesa_simple", "nombre": "Hamburguesa Simple", "precio": 38000},
     ],
 }
+
 
 def parse_quantity(value: str) -> int:
     try:
@@ -48,18 +51,33 @@ def index():
                     total += subtotal
                     detalle.append(f"{cantidad} x {item['nombre']} = Gs {subtotal:,}".replace(",", "."))
 
+        delivery_requested = request.form.get("delivery") == "si"
+        values["delivery"] = "si" if delivery_requested else "no"
+
+        if delivery_requested:
+            total += DELIVERY_COST
+            detalle.append(f"Delivery = Gs {DELIVERY_COST:,}".replace(",", "."))
+
         if total == 0:
-            error = "Debes seleccionar al menos un producto para confirmar el pedido."
+            error = "Debes seleccionar al menos un producto o elegir delivery para confirmar el pedido."
         else:
             resumen = {
                 "cliente": request.form.get("cliente", "Cliente"),
                 "direccion": request.form.get("direccion", "Sin dirección"),
                 "notas": request.form.get("notas", ""),
+                "delivery": delivery_requested,
                 "detalle": detalle,
                 "total": total,
             }
 
-    return render_template("index.html", menu=MENU, resumen=resumen, error=error, values=values)
+    return render_template(
+        "index.html",
+        menu=MENU,
+        resumen=resumen,
+        error=error,
+        values=values,
+        delivery_cost=DELIVERY_COST,
+    )
 
 
 if __name__ == "__main__":

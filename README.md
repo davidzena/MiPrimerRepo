@@ -3,8 +3,9 @@
 Aplicación web para una **lomitería y hamburguesería** donde el cliente puede armar y confirmar su pedido online.
 
 ## Funcionalidades
-- Menú con productos y precios en guaraníes.
+- Menú con productos y precios en guaraníes (hamburguesa a 38.000 Gs).
 - Formulario web para cantidades, nombre, dirección y notas.
+- Opción de delivery con costo adicional de 10.000 Gs.
 - Resumen final con detalle y total del pedido.
 - Estructura separada en `templates/` y `static/` para una web más mantenible.
 
