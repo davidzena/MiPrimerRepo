@@ -17,8 +17,6 @@ MENU = {
     ],
     "hamburguesas": [
         {"id": "hamburguesa_simple", "nombre": "Hamburguesa Simple", "precio": 3900},
-        {"id": "hamburguesa_doble", "nombre": "Hamburguesa Doble", "precio": 5200},
-        {"id": "hamburguesa_bacon", "nombre": "Hamburguesa Bacon", "precio": 5700},
     ],
 }
 
