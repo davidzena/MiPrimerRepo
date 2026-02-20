@@ -6,9 +6,7 @@
   --muted: #dddddd;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -17,16 +15,22 @@ body {
   color: var(--text);
 }
 
-.container {
-  width: min(960px, 92%);
-  margin: 0 auto;
-}
+.container { width: min(960px, 92%); margin: 0 auto; }
 
 .hero {
   background: linear-gradient(135deg, #8b1e3f, #b62d57);
   color: #fff;
   padding: 2rem 0;
   text-align: center;
+}
+
+.main-nav { margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; }
+.main-nav a {
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.6);
+  border-radius: 999px;
+  padding: .4rem .9rem;
 }
 
 .card {
@@ -37,10 +41,7 @@ body {
   padding: 1.25rem;
 }
 
-h2 {
-  border-left: 4px solid var(--primary);
-  padding-left: .6rem;
-}
+h2 { border-left: 4px solid var(--primary); padding-left: .6rem; }
 
 .item {
   display: grid;
@@ -51,8 +52,7 @@ h2 {
   padding: .7rem 0;
 }
 
-input,
-textarea {
+input, textarea {
   width: 100%;
   border: 1px solid #bdbdbd;
   border-radius: 8px;
@@ -60,11 +60,7 @@ textarea {
   font-size: .95rem;
 }
 
-.customer {
-  display: grid;
-  gap: .7rem;
-  margin-top: 1rem;
-}
+.customer { display: grid; gap: .7rem; margin-top: 1rem; }
 
 button {
   margin-top: 1rem;
@@ -78,10 +74,7 @@ button {
   cursor: pointer;
 }
 
-.error {
-  color: #b00020;
-  font-weight: bold;
-}
+.error { color: #b00020; font-weight: bold; }
 
 .resultado {
   margin-top: 1rem;
@@ -97,10 +90,7 @@ button {
   padding: .7rem;
 }
 
-.delivery-box legend {
-  padding: 0 .4rem;
-  font-weight: 600;
-}
+.delivery-box legend { padding: 0 .4rem; font-weight: 600; }
 
 .radio-option {
   display: flex;
@@ -109,6 +99,38 @@ button {
   margin-top: .4rem;
 }
 
-.radio-option input {
-  width: auto;
+.radio-option input { width: auto; }
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: .9rem;
+}
+
+.menu-card {
+  border: 1px solid #ececec;
+  border-radius: 10px;
+  padding: .8rem;
+  background: #fff;
+}
+
+.price {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.cta-link {
+  display: inline-block;
+  margin-top: 1rem;
+  text-decoration: none;
+  color: #fff;
+  background: var(--accent);
+  border-radius: 8px;
+  padding: .6rem .9rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  color: #666;
 }

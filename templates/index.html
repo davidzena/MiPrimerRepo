@@ -1,87 +1,73 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lomi & Burger - Pedidos Online</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
-</head>
-<body>
-  <header class="hero">
-    <div class="container">
-      <h1>Lomi & Burger</h1>
-      <p>Hacé tu pedido online de lomitos y hamburguesas en minutos.</p>
-    </div>
-  </header>
+{% extends "base.html" %}
 
-  <main class="container card">
-    <form method="post">
-      <section>
-        <h2>Lomitería</h2>
-        {% for item in menu.lomitos %}
-          <div class="item">
-            <label for="{{ item.id }}">{{ item.nombre }} (Gs {{ "{:,.0f}".format(item.precio).replace(',', '.') }})</label>
-            <input id="{{ item.id }}" name="{{ item.id }}" type="number" min="0" value="{{ values.get(item.id, 0) }}" />
-          </div>
-        {% endfor %}
-      </section>
+{% block title %}Lomi & Burger - Pedido Online{% endblock %}
 
-      <section>
-        <h2>Hamburguesería</h2>
-        {% for item in menu.hamburguesas %}
-          <div class="item">
-            <label for="{{ item.id }}">{{ item.nombre }} (Gs {{ "{:,.0f}".format(item.precio).replace(',', '.') }})</label>
-            <input id="{{ item.id }}" name="{{ item.id }}" type="number" min="0" value="{{ values.get(item.id, 0) }}" />
-          </div>
-        {% endfor %}
-      </section>
+{% block content %}
+<form method="post">
+  <section>
+    <h2>Lomitería</h2>
+    {% for item in menu.lomitos %}
+      <div class="item">
+        <label for="{{ item.id }}">{{ item.nombre }} (Gs {{ "{:,.0f}".format(item.precio).replace(',', '.') }})</label>
+        <input id="{{ item.id }}" name="{{ item.id }}" type="number" min="0" value="{{ values.get(item.id, 0) }}" />
+      </div>
+    {% endfor %}
+  </section>
 
-      <section class="customer">
-        <h2>Datos del cliente</h2>
-        <label>Nombre
-          <input type="text" name="cliente" value="{{ values.get('cliente', '') }}" required />
-        </label>
-        <label>Dirección
-          <input type="text" name="direccion" value="{{ values.get('direccion', '') }}" required />
-        </label>
-        <label>Notas
-          <textarea name="notas" rows="3">{{ values.get('notas', '') }}</textarea>
-        </label>
+  <section>
+    <h2>Hamburguesería</h2>
+    {% for item in menu.hamburguesas %}
+      <div class="item">
+        <label for="{{ item.id }}">{{ item.nombre }} (Gs {{ "{:,.0f}".format(item.precio).replace(',', '.') }})</label>
+        <input id="{{ item.id }}" name="{{ item.id }}" type="number" min="0" value="{{ values.get(item.id, 0) }}" />
+      </div>
+    {% endfor %}
+  </section>
 
-        <fieldset class="delivery-box">
-          <legend>¿El pedido es con delivery?</legend>
-          <label class="radio-option">
-            <input type="radio" name="delivery" value="si" {% if values.get('delivery') == 'si' %}checked{% endif %} />
-            Sí (+ Gs {{ "{:,.0f}".format(delivery_cost).replace(',', '.') }})
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="delivery" value="no" {% if values.get('delivery', 'no') == 'no' %}checked{% endif %} />
-            No
-          </label>
-        </fieldset>
-      </section>
+  <section class="customer">
+    <h2>Datos del cliente</h2>
+    <label>Nombre
+      <input type="text" name="cliente" value="{{ values.get('cliente', '') }}" required />
+    </label>
+    <label>Dirección
+      <input type="text" name="direccion" value="{{ values.get('direccion', '') }}" required />
+    </label>
+    <label>Notas
+      <textarea name="notas" rows="3">{{ values.get('notas', '') }}</textarea>
+    </label>
 
-      <button type="submit">Confirmar pedido</button>
-    </form>
+    <fieldset class="delivery-box">
+      <legend>¿El pedido es con delivery?</legend>
+      <label class="radio-option">
+        <input type="radio" name="delivery" value="si" {% if values.get('delivery') == 'si' %}checked{% endif %} />
+        Sí (+ Gs {{ "{:,.0f}".format(delivery_cost).replace(',', '.') }})
+      </label>
+      <label class="radio-option">
+        <input type="radio" name="delivery" value="no" {% if values.get('delivery', 'no') == 'no' %}checked{% endif %} />
+        No
+      </label>
+    </fieldset>
+  </section>
 
-    {% if error %}
-      <p class="error">{{ error }}</p>
-    {% endif %}
+  <button type="submit">Confirmar pedido</button>
+</form>
 
-    {% if resumen %}
-      <section class="resultado">
-        <h3>Pedido confirmado para {{ resumen.cliente }}</h3>
-        <p><strong>Dirección:</strong> {{ resumen.direccion }}</p>
-        <p><strong>Notas:</strong> {{ resumen.notas or 'Sin notas' }}</p>
-        <p><strong>Delivery:</strong> {{ 'Sí' if resumen.delivery else 'No' }}</p>
-        <ul>
-          {% for linea in resumen.detalle %}
-            <li>{{ linea }}</li>
-          {% endfor %}
-        </ul>
-        <p><strong>Total:</strong> Gs {{ "{:,.0f}".format(resumen.total).replace(',', '.') }}</p>
-      </section>
-    {% endif %}
-  </main>
-</body>
-</html>
+{% if error %}
+  <p class="error">{{ error }}</p>
+{% endif %}
+
+{% if resumen %}
+  <section class="resultado">
+    <h3>Pedido confirmado para {{ resumen.cliente }}</h3>
+    <p><strong>Dirección:</strong> {{ resumen.direccion }}</p>
+    <p><strong>Notas:</strong> {{ resumen.notas or 'Sin notas' }}</p>
+    <p><strong>Delivery:</strong> {{ 'Sí' if resumen.delivery else 'No' }}</p>
+    <ul>
+      {% for linea in resumen.detalle %}
+        <li>{{ linea }}</li>
+      {% endfor %}
+    </ul>
+    <p><strong>Total:</strong> Gs {{ "{:,.0f}".format(resumen.total).replace(',', '.') }}</p>
+  </section>
+{% endif %}
+{% endblock %}

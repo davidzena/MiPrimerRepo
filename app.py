@@ -80,5 +80,10 @@ def index():
     )
 
 
+@app.route("/menu")
+def menu_page():
+    return render_template("menu.html", menu=MENU, delivery_cost=DELIVERY_COST)
+
+
 if __name__ == "__main__":
     app.run(debug=True)

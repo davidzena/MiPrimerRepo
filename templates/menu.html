@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Lomi & Burger - Menú{% endblock %}
+
+{% block content %}
+<section>
+  <h2>Nuestro Menú</h2>
+  <div class="menu-grid">
+    {% for item in menu.lomitos %}
+      <article class="menu-card">
+        <h3>{{ item.nombre }}</h3>
+        <p class="price">Gs {{ "{:,.0f}".format(item.precio).replace(',', '.') }}</p>
+      </article>
+    {% endfor %}
+    {% for item in menu.hamburguesas %}
+      <article class="menu-card">
+        <h3>{{ item.nombre }}</h3>
+        <p class="price">Gs {{ "{:,.0f}".format(item.precio).replace(',', '.') }}</p>
+      </article>
+    {% endfor %}
+    <article class="menu-card">
+      <h3>Delivery (opcional)</h3>
+      <p class="price">Gs {{ "{:,.0f}".format(delivery_cost).replace(',', '.') }}</p>
+    </article>
+  </div>
+  <a class="cta-link" href="{{ url_for('index') }}">Ir a realizar pedido</a>
+</section>
+{% endblock %}
