@@ -1,8 +1,12 @@
+import os
+from urllib.parse import quote
+
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 DELIVERY_COST = 10000
+PUBLIC_URL = os.getenv("PUBLIC_URL", "http://127.0.0.1:5000")
 
 MENU = {
     "lomitos": [
@@ -83,6 +87,16 @@ def index():
 @app.route("/menu")
 def menu_page():
     return render_template("menu.html", menu=MENU, delivery_cost=DELIVERY_COST)
+
+
+@app.route("/compartir")
+def share_page():
+    message = (
+        "¡Hola! Te comparto el link para hacer tu pedido en Lomi & Burger: "
+        f"{PUBLIC_URL}"
+    )
+    whatsapp_url = f"https://wa.me/?text={quote(message)}"
+    return render_template("share.html", public_url=PUBLIC_URL, whatsapp_url=whatsapp_url)
 
 
 if __name__ == "__main__":

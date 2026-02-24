@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Lomi & Burger - Compartir con clientes{% endblock %}
+
+{% block content %}
+<section>
+  <h2>Compartí tu página con tus clientes</h2>
+  <p>
+    Este es el enlace de tu web para pedidos. Podés copiarlo y enviarlo por WhatsApp,
+    Instagram o cualquier red social.
+  </p>
+
+  <div class="share-box">
+    <p><strong>Enlace público:</strong></p>
+    <code>{{ public_url }}</code>
+  </div>
+
+  <div class="share-actions">
+    <a class="cta-link" href="{{ whatsapp_url }}" target="_blank" rel="noopener">Compartir por WhatsApp</a>
+    <a class="cta-link secondary" href="{{ public_url }}">Abrir página de pedidos</a>
+  </div>
+
+  <p class="hint">
+    Tip: para uso real con clientes, configurá la variable de entorno <code>PUBLIC_URL</code>
+    con tu dominio publicado (por ejemplo: <code>https://tulomiteria.com</code>).
+  </p>
+</section>
+{% endblock %}
