@@ -39,3 +39,19 @@ PUBLIC_URL=https://tu-dominio-publico.com
 ```
 
 Así, en `/compartir` se mostrará el enlace correcto para enviar a tus clientes.
+
+## APK Android (para tus clientes)
+También te dejé un proyecto Android en `android-app/` para generar una APK que abre tu web en una app tipo WebView.
+
+### Antes de compilar
+1. Publicá tu web en un dominio real.
+2. Editá `android-app/app/src/main/java/com/lomiburger/app/MainActivity.kt` y reemplazá:
+   - `https://tu-dominio-publico.com`
+   por tu URL real.
+
+### Cómo generar la APK
+1. Abrí la carpeta `android-app/` con **Android Studio**.
+2. Esperá que sincronice Gradle.
+3. Menú: **Build > Build APK(s)**.
+4. La APK de debug quedará en:
+   - `android-app/app/build/outputs/apk/debug/app-debug.apk`
