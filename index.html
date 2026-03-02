@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lomi & Burger - Pedidos</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>Lomi & Burger</h1>
+      <p>Hacé tu pedido online de lomitos y hamburguesas</p>
+      <nav class="main-nav">
+        <a href="#pedido">Pedido</a>
+        <a href="#menu">Menú</a>
+        <a href="#compartir">Compartir</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container card">
+    <section id="menu">
+      <h2>Nuestro menú</h2>
+      <div class="menu-grid">
+        <article class="menu-card">
+          <h3>Lomito Clásico (Carne Mixta y ensalada)</h3>
+          <p class="price" data-price="25000">Gs 25.000</p>
+        </article>
+        <article class="menu-card">
+          <h3>Lomito solo carne mixta (Carne vacuna y carne de vaca)</h3>
+          <p class="price" data-price="30000">Gs 30.000</p>
+        </article>
+        <article class="menu-card">
+          <h3>Hamburguesa Simple</h3>
+          <p class="price" data-price="38000">Gs 38.000</p>
+        </article>
+        <article class="menu-card">
+          <h3>Delivery (opcional)</h3>
+          <p class="price" data-price="10000">Gs 10.000</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="pedido">
+      <h2>Hacer pedido</h2>
+      <form id="orderForm">
+        <div class="item">
+          <label for="lomitoClasico">Lomito Clásico</label>
+          <input id="lomitoClasico" type="number" min="0" value="0" />
+        </div>
+        <div class="item">
+          <label for="lomitoMixto">Lomito solo carne mixta</label>
+          <input id="lomitoMixto" type="number" min="0" value="0" />
+        </div>
+        <div class="item">
+          <label for="hamburguesa">Hamburguesa Simple</label>
+          <input id="hamburguesa" type="number" min="0" value="0" />
+        </div>
+
+        <div class="customer">
+          <label>Nombre
+            <input id="cliente" type="text" required />
+          </label>
+          <label>Dirección
+            <input id="direccion" type="text" required />
+          </label>
+          <label>Notas
+            <textarea id="notas" rows="3"></textarea>
+          </label>
+
+          <fieldset class="delivery-box">
+            <legend>¿El pedido es con delivery?</legend>
+            <label class="radio-option"><input type="radio" name="delivery" value="si" /> Sí (+ Gs 10.000)</label>
+            <label class="radio-option"><input type="radio" name="delivery" value="no" checked /> No</label>
+          </fieldset>
+        </div>
+
+        <button type="submit">Confirmar pedido</button>
+      </form>
+
+      <section id="resultado" class="resultado hidden"></section>
+    </section>
+
+    <section id="compartir">
+      <h2>Compartir con clientes</h2>
+      <p>Copiá este enlace y enviá por WhatsApp o redes:</p>
+      <div class="share-box">
+        <code id="publicUrl"></code>
+      </div>
+      <div class="share-actions">
+        <a id="whatsappShare" class="cta-link" target="_blank" rel="noopener">Compartir por WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Lomi & Burger · Atención todos los días</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

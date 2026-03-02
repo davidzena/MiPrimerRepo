@@ -1,57 +1,23 @@
 # MiPrimerRepo
 
-Aplicación web para una **lomitería y hamburguesería** donde el cliente puede ver el menú y hacer su pedido online.
+Página web en **HTML/CSS/JavaScript puro** para una lomitería y hamburguesería.
 
-## Funcionalidades
-- Menú con precios en guaraníes.
-- Pedido online con cantidades, datos del cliente y notas.
-- Opción de delivery con costo adicional de 10.000 Gs.
-- Resumen final con total del pedido.
-- Página de menú separada y navegación web simple.
-- Página para compartir el enlace con clientes (`/compartir`).
+## Incluye
+- Menú con precios:
+  - Lomito clásico: 25.000 Gs
+  - Lomito solo carne mixta: 30.000 Gs
+  - Hamburguesa simple: 38.000 Gs
+  - Delivery opcional: 10.000 Gs
+- Formulario de pedido del cliente.
+- Cálculo automático del total en el navegador.
+- Sección para compartir el enlace por WhatsApp.
 
-## Rutas
-- `/` : formulario para crear pedido.
-- `/menu` : página de menú con precios.
-- `/compartir` : página para copiar/compartir el enlace de pedidos.
+## Archivos
+- `index.html`: estructura completa de la página.
+- `styles.css`: estilos de la web.
+- `script.js`: lógica del pedido y compartir.
 
-## Estructura
-- `app.py`: lógica de Flask y rutas.
-- `templates/base.html`: layout base de la web.
-- `templates/index.html`: página de pedidos.
-- `templates/menu.html`: página de menú.
-- `templates/share.html`: página para compartir el enlace a clientes.
-- `static/styles.css`: estilos.
+## Cómo usar
+Solo abrí `index.html` en tu navegador.
 
-## Ejecutar
-```bash
-pip install flask
-python app.py
-```
-
-Abrir: http://127.0.0.1:5000
-
-## Publicar para clientes
-Cuando publiques tu web (por ejemplo en Render/Railway), configurá la variable:
-
-```bash
-PUBLIC_URL=https://tu-dominio-publico.com
-```
-
-Así, en `/compartir` se mostrará el enlace correcto para enviar a tus clientes.
-
-## APK Android (para tus clientes)
-También te dejé un proyecto Android en `android-app/` para generar una APK que abre tu web en una app tipo WebView.
-
-### Antes de compilar
-1. Publicá tu web en un dominio real.
-2. Editá `android-app/app/src/main/java/com/lomiburger/app/MainActivity.kt` y reemplazá:
-   - `https://tu-dominio-publico.com`
-   por tu URL real.
-
-### Cómo generar la APK
-1. Abrí la carpeta `android-app/` con **Android Studio**.
-2. Esperá que sincronice Gradle.
-3. Menú: **Build > Build APK(s)**.
-4. La APK de debug quedará en:
-   - `android-app/app/build/outputs/apk/debug/app-debug.apk`
+Si querés publicarla para tus clientes, subí estos 3 archivos a cualquier hosting estático (Netlify, Vercel, GitHub Pages, etc.).
